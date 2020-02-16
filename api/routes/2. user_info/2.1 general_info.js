@@ -15,7 +15,27 @@ router.post(`/`, async function (req, res, next) {
         con = await connection(dbConfig);
         let body = { ...req.body };
         let user = { ...req.user };
-        let update = await query(con, `update user set ? where id = ?`, [body, user.id]);
+        let user_obj = {
+            gender: body.gender === 'male' ? true : false,
+            age: body.age,
+            height: body.height,
+            weight: body.weight
+        };
+        let update_user = await query(con, `update user set ? where id = ?`, [user_obj, user.id]);
+        let allergen_obj = {
+            corn: body.corn,
+            egg: body.egg,
+            fish: body.fish,
+            meat: body.meat,
+            milk: body.milk,
+            peanut: body.peanut,
+            shellfish: body.shellfish,
+            soy: body.soy,
+            tree_nut: body.tree_nut,
+            wheat: body.wheat,
+            fpies: body.fpies
+        };
+        let inset = await query(con, `insert into user_allergen set ?`, [allergen_obj]);
         res.json(rb.build({}, `user info saved`));
     } catch (err) {
         next(err);
