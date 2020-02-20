@@ -9,5 +9,7 @@ module.exports = {
     SOY_URL: 'https://acaai.org/images/SoyAllergy-TypesOfFoodAllergies.png',
     TREENUT_URL: 'https://acaai.org/images/TreeNutAllergy-TypesOfFoodAllergies.png',
     WHEAT_URL: 'https://acaai.org/images/WheatAllergy-TypesOfFoodAllergies.png',
-    FPIES_URL: 'https://acaai.org/images/FPIES-TypesOfFoodAllergies.png'
+    FPIES_URL: 'https://acaai.org/images/FPIES-TypesOfFoodAllergies.png',
+    KEY: '6a8debfaa2mshc272d7d0240b16cp12b184jsn222676b55b9e',
+    HOST_SPOONACULAR: 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
 };

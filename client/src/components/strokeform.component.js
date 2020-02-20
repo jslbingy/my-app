@@ -21,6 +21,9 @@ export default class Strokeform extends Component {
                                     <Link className="nav-link" to={"/foodhome"}>Food Analyser</Link>
                                 </li>
                                 <li className="nav-item">
+                                    <Link className="nav-link" to={"/diethome"}>Diet Helper</Link>
+                                </li>
+                                <li className="nav-item">
                                     <Link className="nav-link" to={"/strokehome"}>Stroke Detector</Link>
                                 </li>
                             </ul>
