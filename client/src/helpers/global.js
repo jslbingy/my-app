@@ -11,5 +11,21 @@ module.exports = {
     WHEAT_URL: 'https://acaai.org/images/WheatAllergy-TypesOfFoodAllergies.png',
     FPIES_URL: 'https://acaai.org/images/FPIES-TypesOfFoodAllergies.png',
     KEY: '6a8debfaa2mshc272d7d0240b16cp12b184jsn222676b55b9e',
-    HOST_SPOONACULAR: 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+    HOST_SPOONACULAR: 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+    HOST_EDAMAM: 'edamam-recipe-search.p.rapidapi.com',
+    QUICK_ANSWER: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer',
+    MEAL_PLAN: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate',
+    GUESS_NUTRITION: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/guessNutrition',
+    RECIPE: 'https://edamam-recipe-search.p.rapidapi.com/search',
+    IMGBB_KEY: 'd6ef8ed0b3b85ef4a86a9ea9a9eb4e2f',
+    IMGBB_URL: 'https://api.imgbb.com/1/upload',
+    IMGUR_URL: 'https://api.imgur.com/3/image',
+    CLIENT_ID: 'a71e02d4d9d5e85',
+    CLIENT_SECRET: 'f09567c48b679b2edd76a0ea544bbe75a52385dd',
+    EVERY_PIXEL_URL: 'https://everypixel-api.p.rapidapi.com/keywords',
+    HOST_EVERY_PIXEL: 'everypixel-api.p.rapidapi.com',
+    NORMAL_KW: ['Food', 'Meal', 'Dinner', 'Gourmet', 'Lunch', 'Food And Drink', 'Fruit', 'Dessert', 'Plate', 'Freshness', 'Baked', 'Slice', 'Homemade', 'Close-up', 'Bakery', 'Refreshment', 'Crockery', 'No People', 'Cooked', 'Healthy Eating', 'Cooking', 'Bowl', 'Cultures'],
+    HOST_EDAMAM_NUTRITION: 'edamam-edamam-nutrition-analysis.p.rapidapi.com',
+    EDAMAM_NUTRITION_URL: 'https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data',
+
 };

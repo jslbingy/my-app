@@ -105,3 +105,8 @@ body, html, .App, #root, .auth-wrapper {
   height: 90px;
   padding: 2px;
 }
+
+.foodAnalyser{
+  height: 200px;
+  padding: 2px;
+}

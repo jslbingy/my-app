@@ -14,30 +14,21 @@ router.post(`/`, async function (req, res, next) {
         con = await connection(dbConfig);
         let body = { ...req.body };
         let user = { ...req.user };
-        let result = await query(con, `select * from user where id = ?`, [user.id]);
-        result = result[0];
-        let height = result.height;
-        let weight = result.weight;
-        let bmi = Decimal((height / weight) / weight).toFixed(2);
-
-        let data = buildDao(body, user, bmi);
-        let insert = await query(con, `insert into user_stroke set ?`, [data]);
+        let data = buildDao(body);
+        let insert = await query(con, `update user_stroke set ? where user_id = ?`, [data, user.id]);
         res.json(rb.build({}, `stroke info saved`));
     } catch (err) {
         next(err);
     }
 });
 
-function buildDao(body, user, bmi) {
+function buildDao(body) {
     let result = {
-        user_id: user.id,
-        is_hypertension: body.hypertension,
-        is_heart_disease: body.is_heart_disease,
-        ever_married: body.ever_married,
+        is_hypertension: body.hypertension === 'Yes' ? true : false,
+        is_heart_disease: body.heart_disease === 'Yes' ? true : false,
         work_type: body.work_type,
         residence_type: body.residence_type,
-        avg_glucose_level: body.avg_glucose_level,
-        bmi: bmi,
+        avg_glucose_level: body.agl ? body.agl : null,
         smoking_status: body.smoking_status
     }
     return result;

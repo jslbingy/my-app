@@ -24,6 +24,33 @@ router.post(`/`, async function (req, res, next) {
     }
 });
 
+/**
+ * API 2.3.2 get user allergen info
+ */
+router.get(`/`, async function (req, res, next) {
+    let con;
+    try {
+        con = await connection(dbConfig);
+        let user = { ...req.user };
+        let allergens = await query(con, `select * from user_allergen where user_id = ?`, [user.id]);
+        allergens = allergens[0];
+        let result = ``;
+        if (allergens.corn) result += `corn,`;
+        if (allergens.egg) result += `egg,`;
+        if (allergens.fish) result += `fish,`;
+        if (allergens.meat) result += `meat,`;
+        if (allergens.peanut) result += `peanut,`;
+        if (allergens.shellfish) result += `shellfish,`;
+        if (allergens.soy) result += `soy,`;
+        if (allergens.tree_nut) result += `tree nut,`;
+        if (allergens.wheat) result += `wheat,`;
+        if (allergens.fpies) result += `fpies,`;
+        res.json(rb.build({ exclude: result }, `Retrieved Successfully!`));
+    } catch (err) {
+        next(err);
+    }
+})
+
 function buildDao(d, user) {
     let result = {
         user_id: user.id,

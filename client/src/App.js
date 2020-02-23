@@ -11,6 +11,7 @@ import Strokeform from './components/strokeform.component';
 import Authentication from './components/authentication.component';
 import Userinfo from './components/userinfo.component';
 import Diethome from './components/diethome.component';
+import Mealplan from './components/mealplan.component';
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
                   <Route path="/strokeform" component={Strokeform} />
                   <Route path="/userinfo" component={Userinfo} />
                   <Route path="/diethome" component={Diethome} />
+                  <Route path="/mealplan" component={Mealplan} />
                 </Authentication>
               </Switch>
             </div>

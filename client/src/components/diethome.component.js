@@ -9,7 +9,6 @@ export default class Foodhome extends Component {
 
         this.onChangeQuery = this.onChangeQuery.bind(this);
         this.onQuerySubmit = this.onQuerySubmit.bind(this);
-        //this.onChangeAnswer = this.onChangeAnswer.bind(this);
 
         this.state = {
             query: '',
@@ -23,6 +22,8 @@ export default class Foodhome extends Component {
 
     onQuerySubmit(e) {
         e.preventDefault()
+        console.log(this.state);
+
         const headers = {
             "x-rapidapi-host": GLOBALS.HOST_SPOONACULAR,
             "x-rapidapi-key": GLOBALS.KEY
@@ -30,13 +31,21 @@ export default class Foodhome extends Component {
         const params = {
             "q": this.state.query
         };
+        console.log(params);
 
-        axios.get('https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer', { params, headers })
+        const self = this;
+        axios.get(GLOBALS.QUICK_ANSWER, { params, headers })
             .then((res) => {
-                this.setState({ answer: res.data.answer });
+                if (res.data.answer) {
+                    self.setState({ answer: res.data.answer });
+                }
+                else {
+                    this.setState({ answer: `sorry, your question is out of my knowledge, please try ask another one!` });
+                }
             }).catch((error) => {
                 throw error;
             });
+        console.log(this.state);
     }
 
 
@@ -87,11 +96,19 @@ export default class Foodhome extends Component {
                         <div className="form-row">
                             <div className="form-group col-md-12">
                                 <input
-                                    name="query"
+                                    name="answer"
                                     readOnly="readonly"
                                     className="form-control"
                                     placeholder="Quick answer will be displayed here"
                                     value={this.state.answer} />
+                            </div>
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <div className="form-row">
+                            <div className="form-group col-md-3"></div>
+                            <div className="form-group col-md-6">
+                                <Link className="btn btn-primary" style={{ "fontSize": "18px" }} to={"/mealplan"}>Want To Generate Your Own Meal Plan? Try Out Here</Link>
                             </div>
                         </div>
                     </form>

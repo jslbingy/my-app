@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from 'axios';
-import moment from "moment";
 import URLS from "../helpers/global"
 
 export default class Userinfo extends Component {
@@ -10,7 +8,8 @@ export default class Userinfo extends Component {
 
         this.state = {
             age: '',
-            gender: '',
+            gender: 'male',
+            isMarried: 'No',
             height: '',
             weight: '',
             corn: false,
@@ -41,6 +40,7 @@ export default class Userinfo extends Component {
         this.onChangeHeight = this.onChangeHeight.bind(this);
         this.onChangeWeight = this.onChangeWeight.bind(this);
         this.onChangeGender = this.onChangeGender.bind(this);
+        this.onChangeMarriage = this.onChangeMarriage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -50,6 +50,10 @@ export default class Userinfo extends Component {
 
     onChangeGender(e) {
         this.setState({ gender: e.target.value })
+    }
+
+    onChangeMarriage(e) {
+        this.setState({ isMarried: e.target.value })
     }
 
     onChangeHeight(e) {
@@ -111,6 +115,7 @@ export default class Userinfo extends Component {
             gender: this.state.gender,
             height: this.state.height,
             weight: this.state.weight,
+            isMarried: this.state.isMarried,
             corn: this.state.corn,
             egg: this.state.egg,
             fish: this.state.fish,
@@ -123,6 +128,8 @@ export default class Userinfo extends Component {
             wheat: this.state.wheat,
             fpies: this.state.fpies
         }
+        console.log(obj);
+
         let local = JSON.parse(localStorage.getItem("token"));
         axios.defaults.headers.common['Authorization'] = local.token;
         axios.post('http://localhost:9000/api/user_info/general', obj)
@@ -143,7 +150,7 @@ export default class Userinfo extends Component {
             <div>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-row">
-                        <div className="form-group col-md-6">
+                        <div className="form-group col-md-4">
                             <label htmlFor="inputAge">Age</label>
                             <input
                                 type="number"
@@ -153,16 +160,26 @@ export default class Userinfo extends Component {
                                 value={this.state.age}
                                 onChange={this.onChangeAge} />
                         </div>
-                        <div className="form-group col-md-6">
+                        <div className="form-group col-md-4">
                             <label htmlFor="inputGender">Gender</label>
                             <select
                                 id="inputGender"
                                 className="form-control"
-                                defaultValue={'male'}
-                                onChange={this.onChangeGender}
-                            >
+                                defaultValue={this.state.gender}
+                                onChange={this.onChangeGender}>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div className="form-group col-md-4">
+                            <label htmlFor="inputGender">Ever Married</label>
+                            <select
+                                id="inputGender"
+                                className="form-control"
+                                defaultValue={this.state.isMarried}
+                                onChange={this.onChangeMarriage}>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>

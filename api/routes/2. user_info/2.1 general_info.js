@@ -15,6 +15,8 @@ router.post(`/`, async function (req, res, next) {
         con = await connection(dbConfig);
         let body = { ...req.body };
         let user = { ...req.user };
+
+        // update user table
         let user_obj = {
             gender: body.gender === 'male' ? true : false,
             age: body.age,
@@ -22,7 +24,10 @@ router.post(`/`, async function (req, res, next) {
             weight: body.weight
         };
         let update_user = await query(con, `update user set ? where id = ?`, [user_obj, user.id]);
+
+        // insert into user_allergen
         let allergen_obj = {
+            user_id: user.id,
             corn: body.corn,
             egg: body.egg,
             fish: body.fish,
@@ -35,7 +40,19 @@ router.post(`/`, async function (req, res, next) {
             wheat: body.wheat,
             fpies: body.fpies
         };
-        let inset = await query(con, `insert into user_allergen set ?`, [allergen_obj]);
+        let inset_allergen = await query(con, `insert into user_allergen set ?`, [allergen_obj]);
+
+        // insert into user_stroke
+        let bmi = (body.weight / Math.pow((body.height / 100), 2)).toFixed(2);
+        let stroke_obj = {
+            user_id: user.id,
+            ever_married: body.isMarried === 'Yes' ? true : false,
+            bmi: bmi,
+            gender: body.gender === 'male' ? true : false,
+            age: body.age
+        };
+        let insert_stroke = await query(con, `insert into user_stroke set ?`, [stroke_obj]);
+
         res.json(rb.build({}, `user info saved`));
     } catch (err) {
         next(err);

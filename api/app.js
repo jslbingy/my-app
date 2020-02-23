@@ -24,9 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
 let kickOutMap = new Map();
 let userMap = new Map();
 async function verifyToken(req, res, next) {
@@ -62,7 +59,7 @@ app.use('/users', usersRouter);
 
 app.use("/api/general/account", require("./routes/1. general/1.1 login"));
 app.use("/api/user_info/general", verifyToken, require("./routes/2. user_info/2.1 general_info"));
-app.use("/api/user_info/disease", verifyToken, require("./routes/2. user_info/2.2 disease_info"));
+//app.use("/api/user_info/disease", verifyToken, require("./routes/2. user_info/2.2 disease_info"));
 app.use("/api/user_info/allergen", verifyToken, require("./routes/2. user_info/2.3 allergen_info"));
 app.use("/api/user_info/stroke", verifyToken, require("./routes/2. user_info/2.4 stroke_info"));
 app.use("/api/health_data/disease", require("./routes/3. health_data/3.1 disease"));
