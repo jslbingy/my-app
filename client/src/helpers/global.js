@@ -17,8 +17,6 @@ module.exports = {
     MEAL_PLAN: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate',
     GUESS_NUTRITION: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/guessNutrition',
     RECIPE: 'https://edamam-recipe-search.p.rapidapi.com/search',
-    IMGBB_KEY: 'd6ef8ed0b3b85ef4a86a9ea9a9eb4e2f',
-    IMGBB_URL: 'https://api.imgbb.com/1/upload',
     IMGUR_URL: 'https://api.imgur.com/3/image',
     CLIENT_ID: 'a71e02d4d9d5e85',
     CLIENT_SECRET: 'f09567c48b679b2edd76a0ea544bbe75a52385dd',

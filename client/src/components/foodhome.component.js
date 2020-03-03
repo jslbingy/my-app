@@ -48,7 +48,7 @@ export default class Foodhome extends Component {
             redirect: 'follow'
         };
 
-        fetch("https://api.imgur.com/3/image", requestOptions)
+        fetch(GLOBALS.IMGUR_URL, requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 let data = JSON.parse(result);
